@@ -1,0 +1,126 @@
+<!-- Felix here! 😉 - - >
+<!-- I am well aware that client side captcha isn't a good practice. This is just a fun project. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet" href="mystyle.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <title>Captcha Generator</title>
+    <style>
+  
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="container">
+        <div class="wrapper">
+          <canvas id="canvas" width="200px" height="70"></canvas>
+          <button id="reload-button">
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+          </button>
+        </div>
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Enter the text in the image"
+        />
+        <button id="submit-button">Submit</button>
+      </div>
+    </div>
+    <script>
+      // Initial References
+      let submitButton = document.getElementById("submit-button");
+      let userInput = document.getElementById("user-input");
+      let textOutput = document.getElementById("text");
+      let canvas = document.getElementById("canvas");
+      let reloadButton = document.getElementById("reload-button");
+      let text = "";
+
+      // Generate Text
+      const textGenerator = () => {
+        let generatedText = "";
+        /*
+        String.fromCharCode gives ASCII value from a given number
+        */
+        //  total 9 letters hence loop of 3
+        for (let i = 0; i < 3; i++) {
+          // 65-90 numbers are Capital letters
+          generatedText += String.fromCharCode(randomNumber(65, 90));
+          // 97-122 are small letters
+          generatedText += String.fromCharCode(randomNumber(97, 122));
+          // 48-57 are numbers from 0-9
+          generatedText += String.fromCharCode(randomNumber(48, 57));
+        }
+        return generatedText;
+      };
+
+      // Generates Random number between a given range
+      const randomNumber = (min, max) =>
+        Math.floor(Math.random() * (max - min + 1) + min);
+
+      // Canvas part
+      function drawStringOnCanvas(string) {
+        //The getContext() function returns the drawing context that has all the drawing properties and functions needed to draw on the canvas.
+        let ctx = canvas.getContext("2d");
+        //clear the canvas
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        //array of text colors (you can add more)
+        const textColors = ["rgb(0,0,0)", "rgb(130,130,130)"];
+        // loop through string
+        //space between letters
+        const letterSpace = 150 / string.length;
+        for (let i = 0; i < string.length; i++) {
+          //Define Initial space on X axis(similar to margin-left)
+          const xInitialSpace = 25;
+          //set font for canvas element 
+          ctx.font = `20px Roboto Mono`;
+          //set text color
+          ctx.fillStyle = textColors[randomNumber(0, 1)];
+          ctx.fillText(
+            string[i],
+            xInitialSpace + i * letterSpace,
+            randomNumber(25, 40),
+            100
+          );
+        }
+      }
+
+      // Initial Function
+      const triggerFunction = () => {
+        //clear input
+        userInput.value = "";
+        text = textGenerator();
+        // Randomize the text so that every time the position of numbers and small letters is random
+        text = [...text].sort(() => Math.random() - 0.5).join("");
+        drawStringOnCanvas(text);
+      };
+
+      //call triggerFunction for reload button
+      reloadButton.addEventListener("click", triggerFunction);
+
+      //call triggerFunction when page loads
+      window.onload = () => triggerFunction();
+
+      // When User clicks on submit
+      submitButton.addEventListener("click", () => {
+        // check if user input== the generated text
+        if (userInput.value === text) {
+          alert("Success");
+        } else {
+          alert("Incorrect Input");
+          triggerFunction();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+    * {
+        padding: 0;
+        margin: 0;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        background: -o-linear-gradient(315deg, #8052ec, #d161ff);
+        background: linear-gradient(135deg, #8052ec, #d161ff);
+      }
+      .box {
+        width: 20.5em;
+        position: absolute;
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+      }
+      .container {
+        width: 100%;
+        background-color: #ffffff;
+        padding: 3em 1em;
+        border-radius: 0.6em;
+        -webkit-box-shadow: 0 1em 2em rgba(0, 0, 0, 0.25);
+                box-shadow: 0 1em 2em rgba(0, 0, 0, 0.25);
+      }
+      a {
+        display: block;
+        width: 100%;
+        font-size: 1.2em;
+        margin-top: 2em;
+        padding: 1em 0;
+        font-family: "Roboto Mono", sans-serif;
+        text-align: center;
+        background-color: #ffffff;
+        -webkit-box-shadow: 0 1em 2em rgba(0, 0, 0, 0.25);
+                box-shadow: 0 1em 2em rgba(0, 0, 0, 0.25);
+        color: #8052ec;
+        text-decoration: none;
+        border-radius: 0.4em;
+      }
+      canvas {
+        border: 1px solid black;
+        border-radius: 0.4em;
+      }
+      .wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-line-pack: center;
+            align-content: center;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        margin: 1em 0;
+      }
+      input[type="text"] {
+        font-family: "Roboto Mono", sans-serif;
+        font-size: 16px;
+        width: 100%;
+        padding: 1em 0.7em;
+        border: 1px solid black;
+        border-radius: 0.4em;
+      }
+      button#reload-button {
+        font-size: 24px;
+        width: 3em;
+        background-color: #8052ec;
+        color: #ffffff;
+        border: none;
+        border-radius: 0.4em;
+      }
+      button#submit-button {
+        width: 100%;
+        background-color: #8052ec;
+        color: #ffffff;
+        font-size: 20px;
+        border: none;
+        padding: 0.8em 0;
+        margin-top: 1em;
+        border-radius: 0.4em;
+        font-family: "Roboto Mono", sans-serif;
+      }
